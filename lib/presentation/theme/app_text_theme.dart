@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'app_colors.dart';
 
-TextTheme appTextTheme = TextTheme(
+TextTheme appTextTheme() => TextTheme(
   bodyLarge: TextStyle(
     color: AppColors.secondaryBlue,
     fontSize: 16

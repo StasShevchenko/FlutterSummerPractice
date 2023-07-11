@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'app_colors.dart';
 
-InputDecorationTheme appInputDecorationTheme = InputDecorationTheme(
+InputDecorationTheme appInputDecorationTheme() => InputDecorationTheme(
     enabledBorder: OutlineInputBorder(
         borderSide: BorderSide(color: AppColors.secondaryBlue),
         borderRadius: BorderRadius.circular(10)),

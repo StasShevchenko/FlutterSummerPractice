@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_summer_practice/presentation/theme/app_colors.dart';
 
-ButtonStyle elevatedButtonStyle = ElevatedButton.styleFrom(
+ButtonStyle elevatedButtonStyle() => ElevatedButton.styleFrom(
   backgroundColor: AppColors.primaryBlue,
   foregroundColor: AppColors.primaryWhite,
   elevation: 0,

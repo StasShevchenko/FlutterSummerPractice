@@ -13,7 +13,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
-      theme: appTheme,
+      theme: appTheme(),
+      darkTheme: appTheme(),
       home: Listener(
           onPointerDown: (PointerDownEvent event) =>
               FocusManager.instance.primaryFocus?.unfocus(),
