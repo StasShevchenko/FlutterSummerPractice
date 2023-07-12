@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_summer_practice/presentation/home_page/components/calendar/calendar.dart';
 import 'package:flutter_summer_practice/presentation/theme/app_colors.dart';
 import 'package:flutter_summer_practice/presentation/theme/app_theme.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:intl/intl.dart';
+import 'package:intl/date_symbol_data_local.dart';
 
 void main() {
-  runApp(const MyApp());
+  initializeDateFormatting('ru').then((_) => runApp(const MyApp()));
 }
 
 class MyApp extends StatelessWidget {
@@ -107,6 +110,8 @@ class _MyHomePageState extends State<MyHomePage> {
                 )
               ],
             ),
+
+            const Calendar(startTime: '7/11/2023', endTime: '7/13/2023', isActive: true,),
             const SizedBox(
               height: 20,
             ),
@@ -114,7 +119,8 @@ class _MyHomePageState extends State<MyHomePage> {
               onPressed: () {},
               style: ElevatedButton.styleFrom(minimumSize: const Size.fromHeight(50)),
               child: const Text('404'),
-            )
+            ),
+
           ],
         ),
       ),
