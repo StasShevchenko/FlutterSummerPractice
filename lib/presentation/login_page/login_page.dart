@@ -44,6 +44,7 @@ class _LoginPageState extends State<LoginPage> {
         return;
       } else {
         if (login == 'Михаил' && password == 'Михаил') {
+          Navigator.of(context).pop();
           Navigator.of(context).push(MaterialPageRoute(
               builder: (context) => const HomePage(
                     title: 'Привет, Мишаня!',
