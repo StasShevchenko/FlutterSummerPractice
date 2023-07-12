@@ -3,6 +3,7 @@ import 'package:flutter_summer_practice/presentation/home_page/components/calend
 import 'package:flutter_summer_practice/presentation/theme/app_colors.dart';
 import 'package:flutter_summer_practice/presentation/theme/app_theme.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/date_symbol_data_local.dart';
 
 void main() {
@@ -84,7 +85,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 const SizedBox(
                   width: 10,
                 ),
-                const Expanded(
+                 const Expanded(
                   child: TextField(
                     enabled: false,
                     decoration:
