@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_summer_practice/presentation/home_page/components/calendar/calendar.dart';
 import 'package:flutter_summer_practice/presentation/theme/app_colors.dart';
 import 'package:flutter_summer_practice/presentation/theme/app_theme.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:intl/date_symbol_data_local.dart';
 
 void main() {
-  runApp(const MyApp());
+  initializeDateFormatting('ru').then((_) => runApp(const MyApp()));
 }
 
 class MyApp extends StatelessWidget {
@@ -14,8 +17,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
+      themeMode: ThemeMode.light,
       theme: appTheme(),
-      darkTheme: appTheme(),
+      debugShowCheckedModeBanner: false,
       home: Listener(
           onPointerDown: (PointerDownEvent event) =>
               FocusManager.instance.primaryFocus?.unfocus(),
@@ -53,12 +57,16 @@ class _MyHomePageState extends State<MyHomePage> {
             child: Center(
               child: Container(
                 decoration: BoxDecoration(
-                  color: AppColors.primaryWhite,
-                  borderRadius: BorderRadius.circular(10)
-                ),
+                    color: AppColors.primaryWhite,
+                    borderRadius: BorderRadius.circular(10)),
                 height: 35,
                 width: 35,
-                child: IconButton(onPressed: (){}, icon: SvgPicture.asset('assets/icons/bell_icon.svg',),),
+                child: IconButton(
+                  onPressed: () {},
+                  icon: SvgPicture.asset(
+                    'assets/icons/bell_icon.svg',
+                  ),
+                ),
               ),
             ),
           ),
@@ -78,7 +86,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 const SizedBox(
                   width: 10,
                 ),
-                const Expanded(
+                 const Expanded(
                   child: TextField(
                     enabled: false,
                     decoration:
@@ -110,11 +118,27 @@ class _MyHomePageState extends State<MyHomePage> {
             const SizedBox(
               height: 20,
             ),
+            Expanded(
+                child: Card(
+                  color: AppColors.primaryWhite,
+                    surfaceTintColor: AppColors.primaryWhite,
+                    elevation: 10,
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10)),
+                    child: const Calendar(
+                      startTime: '7/11/2023',
+                      endTime: '7/13/2023',
+                      isActive: true,
+                    ))),
+            const SizedBox(
+              height: 20,
+            ),
             ElevatedButton(
               onPressed: () {},
-              style: ElevatedButton.styleFrom(minimumSize: const Size.fromHeight(50)),
-              child: const Text('404'),
-            )
+              style: ElevatedButton.styleFrom(
+                  minimumSize: const Size.fromHeight(50)),
+              child: const Text('Личный кабинет'),
+            ),
           ],
         ),
       ),
