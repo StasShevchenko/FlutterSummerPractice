@@ -1,6 +1,7 @@
 import 'dart:ffi';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_summer_practice/presentation/home_page/components/calendar/active_calendar_day.dart';
 import 'package:intl/intl.dart';
 import 'package:table_calendar/table_calendar.dart';
 
@@ -32,38 +33,12 @@ class Calendar extends StatelessWidget {
       calendarBuilders: CalendarBuilders(todayBuilder: (context, day, _) {
         if (day.compareTo(startDate) >= 0 &&
             day.compareTo(endDate.add(const Duration(days: 1))) <= 0) {
-          return Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Container(
-              decoration: BoxDecoration(
-                  color: AppColors.primaryAccentRed,
-                  borderRadius: BorderRadius.all(Radius.circular(12.0))),
-              child: Center(
-                child: Text(
-                  day.day.toString(),
-                  style: const TextStyle(color: Colors.white),
-                ),
-              ),
-            ),
-          );
+          return ActiveCalendarDay(dayNumber: day.day.toString());
         }
       }, defaultBuilder: (context, day, focusedDay) {
         if (day.compareTo(startDate) >= 0 &&
             day.compareTo(endDate.add(const Duration(days: 1))) <= 0) {
-          return Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Container(
-              decoration: BoxDecoration(
-                  color: AppColors.primaryAccentRed,
-                  borderRadius: BorderRadius.all(Radius.circular(12.0))),
-              child: Center(
-                child: Text(
-                  day.day.toString(),
-                  style: const TextStyle(color: Colors.white),
-                ),
-              ),
-            ),
-          );
+          return ActiveCalendarDay(dayNumber: day.day.toString());
         }
       }),
     );

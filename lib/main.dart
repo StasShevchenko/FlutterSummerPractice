@@ -3,7 +3,6 @@ import 'package:flutter_summer_practice/presentation/home_page/components/calend
 import 'package:flutter_summer_practice/presentation/theme/app_colors.dart';
 import 'package:flutter_summer_practice/presentation/theme/app_theme.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:intl/intl.dart';
 import 'package:intl/date_symbol_data_local.dart';
 
 void main() {
