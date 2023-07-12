@@ -10,5 +10,9 @@ TextTheme appTextTheme() => GoogleFonts.golosTextTextTheme().copyWith(
     ),
   bodyMedium: GoogleFonts.golosText().copyWith(
     color: AppColors.secondaryBlue
+  ),
+  titleLarge: GoogleFonts.golosText().copyWith(
+    color: AppColors.secondaryBlue,
+    fontSize: 24
   )
 );
