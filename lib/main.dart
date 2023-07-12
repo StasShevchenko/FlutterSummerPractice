@@ -17,8 +17,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
+      themeMode: ThemeMode.light,
       theme: appTheme(),
-      darkTheme: appTheme(),
+      debugShowCheckedModeBanner: false,
       home: Listener(
           onPointerDown: (PointerDownEvent event) =>
               FocusManager.instance.primaryFocus?.unfocus(),
@@ -119,6 +120,8 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
             Expanded(
                 child: Card(
+                  color: AppColors.primaryWhite,
+                    surfaceTintColor: AppColors.primaryWhite,
                     elevation: 10,
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10)),
@@ -134,7 +137,7 @@ class _MyHomePageState extends State<MyHomePage> {
               onPressed: () {},
               style: ElevatedButton.styleFrom(
                   minimumSize: const Size.fromHeight(50)),
-              child: const Text('404'),
+              child: const Text('Личный кабинет'),
             ),
           ],
         ),
