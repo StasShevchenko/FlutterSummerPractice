@@ -116,7 +116,10 @@ class _LoginPageState extends State<LoginPage> {
               width: double.maxFinite,
               child: ElevatedButton(
                 onPressed: _login,
-                child: const Text('Войти'),
+                child: const Text(
+                  'Войти',
+                  style: TextStyle(letterSpacing: 1.5),
+                ),
               ),
             ),
             const Spacer(
