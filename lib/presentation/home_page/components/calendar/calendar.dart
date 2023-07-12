@@ -12,21 +12,28 @@ class Calendar extends StatelessWidget {
   final String endTime;
   final bool isActive;
 
-  const Calendar(
-      {super.key,
-      required this.startTime,
-      required this.endTime,
-      required this.isActive});
+  const Calendar({super.key,
+    required this.startTime,
+    required this.endTime,
+    required this.isActive});
 
   @override
   Widget build(BuildContext context) {
     var dateFormat = DateFormat('MM/dd/yyyy');
-    DateTime startDate = dateFormat.parse(startTime);
-    DateTime endDate = dateFormat.parse(endTime);
-
+    DateTime startDate = dateFormat.parse(startTime).toUtc();
+    DateTime endDate = dateFormat.parse(endTime).toUtc();
     return TableCalendar(
       locale: 'ru',
-      headerStyle: HeaderStyle(titleCentered: true, formatButtonVisible: false),
+      headerStyle: const HeaderStyle(
+          titleCentered: true, formatButtonVisible: false, titleTextStyle: TextStyle(
+        color: Colors.black,
+        fontSize: 22
+      )),
+      calendarStyle: const CalendarStyle(
+          defaultTextStyle: TextStyle(
+              color: Colors.black
+          )
+      ),
       focusedDay: DateTime.now(),
       firstDay: DateTime.utc(2010, 10, 16),
       lastDay: DateTime.utc(2030, 3, 14),

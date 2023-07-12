@@ -55,12 +55,16 @@ class _MyHomePageState extends State<MyHomePage> {
             child: Center(
               child: Container(
                 decoration: BoxDecoration(
-                  color: AppColors.primaryWhite,
-                  borderRadius: BorderRadius.circular(10)
-                ),
+                    color: AppColors.primaryWhite,
+                    borderRadius: BorderRadius.circular(10)),
                 height: 35,
                 width: 35,
-                child: IconButton(onPressed: (){}, icon: SvgPicture.asset('assets/icons/bell_icon.svg',),),
+                child: IconButton(
+                  onPressed: () {},
+                  icon: SvgPicture.asset(
+                    'assets/icons/bell_icon.svg',
+                  ),
+                ),
               ),
             ),
           ),
@@ -109,17 +113,28 @@ class _MyHomePageState extends State<MyHomePage> {
                 )
               ],
             ),
-
-            const Calendar(startTime: '7/11/2023', endTime: '7/13/2023', isActive: true,),
+            const SizedBox(
+              height: 20,
+            ),
+            Expanded(
+                child: Card(
+                    elevation: 10,
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10)),
+                    child: const Calendar(
+                      startTime: '7/11/2023',
+                      endTime: '7/13/2023',
+                      isActive: true,
+                    ))),
             const SizedBox(
               height: 20,
             ),
             ElevatedButton(
               onPressed: () {},
-              style: ElevatedButton.styleFrom(minimumSize: const Size.fromHeight(50)),
+              style: ElevatedButton.styleFrom(
+                  minimumSize: const Size.fromHeight(50)),
               child: const Text('404'),
             ),
-
           ],
         ),
       ),
