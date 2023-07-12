@@ -33,7 +33,7 @@ class HomePage extends StatelessWidget {
                 height: 35,
                 width: 35,
                 child: IconButton(
-                  onPressed: () {},
+                  onPressed: () {Navigator.of(context).pop();},
                   icon: SvgPicture.asset(
                     'assets/icons/bell_icon.svg',
                   ),

@@ -44,7 +44,6 @@ class _LoginPageState extends State<LoginPage> {
         return;
       } else {
         if (login == 'Михаил' && password == 'Михаил') {
-          Navigator.of(context).pop();
           Navigator.of(context).push(MaterialPageRoute(
               builder: (context) => const HomePage(
                     title: 'Привет, Мишаня!',
@@ -67,56 +66,65 @@ class _LoginPageState extends State<LoginPage> {
     );
 
     return Scaffold(
-        backgroundColor: AppColors.background,
-        appBar: AppBar(
-          leading: Center(child: companyIcon),
-          title: const Text('Авторизация'),
-        ),
-        body: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(
+      resizeToAvoidBottomInset: false,
+      backgroundColor: AppColors.background,
+      appBar: AppBar(
+        leading: Center(child: companyIcon),
+        title: const Text('Авторизация'),
+      ),
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 20),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const Spacer(
+              flex: 1,
+            ),
+            Container(
+              alignment: Alignment.center,
+              width: double.maxFinite,
+              child: Text(
                 'Добро пожаловать!',
                 style: Theme.of(context).textTheme.titleLarge,
               ),
-              const SizedBox(
-                height: 20,
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+            TextField(
+              onTapOutside: (_) => FocusScope.of(context).unfocus(),
+              textInputAction: TextInputAction.next,
+              textCapitalization: TextCapitalization.sentences,
+              onChanged: (value) => _enterLogin(value),
+              decoration: InputDecoration(
+                  labelText: 'Введите логин', errorText: loginErrorText),
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+            TextField(
+              onTapOutside: (_) => FocusScope.of(context).unfocus(),
+              onChanged: (value) => _enterPassword(value),
+              obscureText: true,
+              decoration: InputDecoration(
+                  labelText: 'Введите пароль', errorText: passwordErrorText),
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+            SizedBox(
+              width: double.maxFinite,
+              child: ElevatedButton(
+                onPressed: _login,
+                child: const Text('Войти'),
               ),
-              Container(
-                width: 250,
-                child: TextField(
-                  textInputAction: TextInputAction.next,
-                  textCapitalization: TextCapitalization.sentences,
-                  onChanged: (value) => _enterLogin(value),
-                  decoration: InputDecoration(
-                      labelText: 'Введите логин', errorText: loginErrorText),
-                ),
-              ),
-              const SizedBox(
-                height: 20,
-              ),
-              SizedBox(
-                width: 250,
-                child: TextField(
-                  onChanged: (value) => _enterPassword(value),
-                  obscureText: true,
-                  decoration: InputDecoration(
-                      labelText: 'Введите пароль',
-                      errorText: passwordErrorText),
-                ),
-              ),
-              const SizedBox(
-                height: 20,
-              ),
-              SizedBox(
-                  width: 250,
-                  child: ElevatedButton(
-                    onPressed: _login,
-                    child: const Text('Войти'),
-                  )),
-            ],
-          ),
-        ));
+            ),
+            const Spacer(
+              flex: 2,
+            )
+          ],
+        ),
+      ),
+    );
   }
 }

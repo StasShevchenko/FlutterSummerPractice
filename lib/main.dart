@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_summer_practice/presentation/home_page/home_page.dart';
 import 'package:flutter_summer_practice/presentation/login_page/login_page.dart';
 import 'package:flutter_summer_practice/presentation/theme/app_theme.dart';
 import 'package:intl/date_symbol_data_local.dart';
@@ -18,12 +17,7 @@ class MyApp extends StatelessWidget {
       themeMode: ThemeMode.light,
       theme: appTheme(),
       debugShowCheckedModeBanner: false,
-      home: Listener(
-          onPointerDown: (PointerDownEvent event) =>
-              FocusManager.instance.primaryFocus?.unfocus(),
-         child: LoginPage(),
-         // child: const HomePage(title: 'Привет, Мишаня!')
-      ),
+      home: LoginPage(),
     );
   }
 }
