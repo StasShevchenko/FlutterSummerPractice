@@ -17,6 +17,7 @@ class UserItem extends StatelessWidget {
 
     return Card(
       surfaceTintColor: AppColors.primaryWhite,
+      color: AppColors.primaryWhite,
       child: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Column(

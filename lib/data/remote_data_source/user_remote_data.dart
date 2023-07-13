@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:dio/dio.dart';
+import 'package:flutter_summer_practice/data/dto/add_user_dto.dart';
 
 import '../dto/user_dto.dart';
 
@@ -20,4 +21,9 @@ class UserRemoteData{
 
     return usersList;
   }
+
+  Future<void> addUser(AddUserDto user) async {
+    await dio.post('http://62.113.110.235:3000/user', data: user.toJson());
+  }
+
 }
