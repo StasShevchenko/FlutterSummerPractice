@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_summer_practice/presentation/admin_home_page/admin_home_page_provider.dart';
+import 'package:flutter_summer_practice/presentation/admin_home_page/components/user_item.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
 
@@ -51,8 +52,10 @@ class AdminHomePage extends StatelessWidget {
                         child: Text('Обновить страницу'),
                       )
                     } else if (state.isLoading) ...{
-                      CircularProgressIndicator(
-                        color: AppColors.primaryBlue,
+                      Center(
+                        child:   CircularProgressIndicator(
+                          color: AppColors.primaryBlue,
+                        ),
                       )
                     } else ...{
                       if (state.users.isEmpty)
@@ -62,7 +65,12 @@ class AdminHomePage extends StatelessWidget {
                           child: ListView.builder(
                             itemCount: state.users.length,
                             itemBuilder: (BuildContext context, int index) {
-                              return Text(state.users[index].name);
+                              return Padding(
+                                padding: const EdgeInsets.symmetric(vertical: 8.0),
+                                child: UserItem(userInfo: state.users[index], onTap: (){
+
+                                },),
+                              );
                             },
                           ),
                         ),
