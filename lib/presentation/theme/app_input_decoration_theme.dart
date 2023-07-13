@@ -10,6 +10,9 @@ InputDecorationTheme appInputDecorationTheme() => InputDecorationTheme(
       borderRadius: BorderRadius.circular(10),
       borderSide: BorderSide(color: AppColors.primaryWhite)
     ),
+    focusedBorder: OutlineInputBorder(
+        borderSide: BorderSide(color: AppColors.secondaryBlue),
+        borderRadius: BorderRadius.circular(10)),
     labelStyle: TextStyle(color: AppColors.secondaryBlue),
     fillColor: AppColors.primaryWhite,
     filled: true);
