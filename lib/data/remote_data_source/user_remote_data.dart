@@ -24,6 +24,10 @@ class UserRemoteData{
     }
     return usersList;
   }
+  
+  Future<void> deleteUser(int userId) async{
+    await dio.delete('http://62.113.110.235:4000/user/$userId');
+  }
 
   Future<void> addUser(AddUserDto user) async {
     await dio.post('http://62.113.110.235:4000/user', data: user.toJson());

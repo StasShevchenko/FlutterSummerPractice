@@ -1,12 +1,15 @@
 import 'dart:async';
 
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_summer_practice/data/remote_data_source/user_remote_data.dart';
 import 'package:flutter_summer_practice/data/repository/user_repository.dart';
 import 'package:flutter_summer_practice/presentation/admin_home_page/admin_home_page_state.dart';
 import 'package:flutter_summer_practice/utils/resource.dart';
 
 class AdminHomePageProvider extends ChangeNotifier {
   final userRepository = UserRepository();
+  final userData = UserRemoteData();
+
   AdminHomePageState? state = AdminHomePageState();
 
   StreamSubscription? subscription;
@@ -16,6 +19,11 @@ class AdminHomePageProvider extends ChangeNotifier {
   }
 
   void updateRequest() {
+    _listenUserData();
+  }
+
+  void deleteUser(int userId) async{
+    await userData.deleteUser(userId);
     _listenUserData();
   }
 

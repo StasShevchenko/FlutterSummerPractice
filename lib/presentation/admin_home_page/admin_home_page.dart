@@ -69,7 +69,19 @@ class AdminHomePage extends StatelessWidget {
                       )
                     } else ...{
                       if (state.users.isEmpty)
-                        Expanded(child: Text('Список сотрудников пуст :('))
+                        Expanded(
+                          child: Center(
+                            child: TextButton(
+                              onPressed: () {
+                                provider.updateRequest();
+                              },
+                              child: Text(
+                                'Список сотрудников пуст :(',
+                                style: Theme.of(context).textTheme.bodyMedium,
+                              ),
+                            ),
+                          ),
+                        )
                       else
                         Expanded(
                           child: RefreshIndicator(
@@ -83,6 +95,10 @@ class AdminHomePage extends StatelessWidget {
                                   child: UserItem(
                                     userInfo: state.users[index],
                                     onTap: () {},
+                                    onDelete: () {
+                                      provider
+                                          .deleteUser(state.users[index].id);
+                                    },
                                   ),
                                 );
                               },
