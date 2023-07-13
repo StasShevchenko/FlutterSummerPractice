@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:flutter/cupertino.dart';
-import 'package:flutter_summer_practice/data/dto/user_dto.dart';
 import 'package:flutter_summer_practice/data/repository/user_repository.dart';
 import 'package:flutter_summer_practice/presentation/admin_home_page/admin_home_page_state.dart';
 import 'package:flutter_summer_practice/utils/resource.dart';
@@ -40,6 +39,7 @@ class AdminHomePageProvider extends ChangeNotifier {
           {
             state = AdminHomePageState(
                 users: [], isLoading: false, errorMessage: event.message);
+            notifyListeners();
           }
       }
     });

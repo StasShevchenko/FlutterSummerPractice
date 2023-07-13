@@ -54,7 +54,7 @@ class AdminHomePage extends StatelessWidget {
                       )
                     } else if (state.isLoading) ...{
                       Expanded(
-                        child:  Center(
+                        child: Center(
                           child: CircularProgressIndicator(
                             color: AppColors.primaryBlue,
                           ),
@@ -73,7 +73,7 @@ class AdminHomePage extends StatelessWidget {
                       else
                         Expanded(
                           child: RefreshIndicator(
-                            onRefresh: () async =>  provider.updateRequest(),
+                            onRefresh: () async => provider.updateRequest(),
                             child: ListView.builder(
                               itemCount: state.users.length,
                               itemBuilder: (BuildContext context, int index) {

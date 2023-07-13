@@ -17,11 +17,11 @@ class UserDto {
       required this.group});
 
   factory UserDto.fromJson(Map<String, dynamic> json) => UserDto(
-      id: json['id'],
+      id: json['id'] ,
       name: json['name'],
-      startTime: json['start_time'],
-      endTime: json['end_time'],
-      position: json['position'],
+      startTime: json['start_time'] ?? '7/11/2023',
+      endTime: json['end_time'] ?? '7/11/2023',
+      position: json['position'] ?? 0,
       isActive: json['active'],
-      group: json['group']);
+      group: json['groupId'] ?? 0);
 }
