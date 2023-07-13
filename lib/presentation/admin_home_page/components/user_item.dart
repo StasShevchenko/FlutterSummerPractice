@@ -22,12 +22,12 @@ class UserItem extends StatelessWidget {
         child: Column(
           children: [
             Text(userInfo.name, style: Theme.of(context).textTheme.bodyLarge,),
-            SizedBox(height: 10,),
+            const SizedBox(height: 10,),
             Text('Отделение сотрудника: ${userInfo.group}'),
-            SizedBox(height: 10,),
+            const SizedBox(height: 10,),
             if(userInfo.isActive) Text('Статус сотрудника: парковка доступна', style: TextStyle(color: AppColors.primaryAccentRed),)
             else Text('Статус пользователя: парковка недоступна', style: TextStyle(color: AppColors.primaryBlue),),
-            SizedBox(height: 10,),
+            const SizedBox(height: 10,),
             Text('Следующий срок использования парковки: $startDateString - $endDateString', textAlign: TextAlign.center,)
           ],
         ),

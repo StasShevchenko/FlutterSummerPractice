@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_summer_practice/presentation/admin_add_user_page/admin_add_user_page.dart';
 import 'package:flutter_summer_practice/presentation/admin_home_page/admin_home_page_provider.dart';
 import 'package:flutter_summer_practice/presentation/admin_home_page/components/user_item.dart';
 import 'package:flutter_svg/svg.dart';
@@ -52,30 +53,47 @@ class AdminHomePage extends StatelessWidget {
                         child: Text('Обновить страницу'),
                       )
                     } else if (state.isLoading) ...{
-                      Center(
-                        child:   CircularProgressIndicator(
-                          color: AppColors.primaryBlue,
+                      Expanded(
+                        child:  Center(
+                          child: CircularProgressIndicator(
+                            color: AppColors.primaryBlue,
+                          ),
                         ),
+                      ),
+                      ElevatedButton(
+                        onPressed: () {
+                          Navigator.of(context).push(MaterialPageRoute(
+                              builder: (context) => const AdminAddUserPage()));
+                        },
+                        child: Text('Добавить сотрудника'),
                       )
                     } else ...{
                       if (state.users.isEmpty)
                         Expanded(child: Text('Список сотрудников пуст :('))
                       else
                         Expanded(
-                          child: ListView.builder(
-                            itemCount: state.users.length,
-                            itemBuilder: (BuildContext context, int index) {
-                              return Padding(
-                                padding: const EdgeInsets.symmetric(vertical: 8.0),
-                                child: UserItem(userInfo: state.users[index], onTap: (){
-
-                                },),
-                              );
-                            },
+                          child: RefreshIndicator(
+                            onRefresh: () async =>  provider.updateRequest(),
+                            child: ListView.builder(
+                              itemCount: state.users.length,
+                              itemBuilder: (BuildContext context, int index) {
+                                return Padding(
+                                  padding:
+                                      const EdgeInsets.symmetric(vertical: 8.0),
+                                  child: UserItem(
+                                    userInfo: state.users[index],
+                                    onTap: () {},
+                                  ),
+                                );
+                              },
+                            ),
                           ),
                         ),
                       ElevatedButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.of(context).push(MaterialPageRoute(
+                              builder: (context) => const AdminAddUserPage()));
+                        },
                         child: Text('Добавить сотрудника'),
                       )
                     }

@@ -18,7 +18,6 @@ class UserRepository{
       } else{
         yield const Error(message: 'Ошибка соединения! Проверьте ваше подключение к интернету!');
       }
-
     } on DioException catch(e) {
       yield Error(message: e.message);
     }
