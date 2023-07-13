@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_summer_practice/presentation/admin_home_page/admin_home_page.dart';
 import 'package:flutter_svg/svg.dart';
 
 import '../home_page/home_page.dart';
@@ -49,6 +50,8 @@ class _LoginPageState extends State<LoginPage> {
                     title: 'Привет, Мишаня!',
                   )));
         } else if (login == 'Admin' && password == 'Admin') {
+          Navigator.of(context).push(
+              MaterialPageRoute(builder: (context) => const AdminHomePage()));
         } else {
           loginErrorText = 'Неверный логин!';
           passwordErrorText = 'Неверный пароль!';

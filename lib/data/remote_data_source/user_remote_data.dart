@@ -11,7 +11,6 @@ class UserRemoteData{
   Future<List<UserDto>> getAllUsers() async {
     final response = await dio.get('http://62.113.110.235:3000/user');
 
-    print(response.data);
     List<dynamic> data = response.data as List;
     List<UserDto> usersList = [];
 
