@@ -90,20 +90,22 @@ class HomePage extends StatelessWidget {
             const SizedBox(
               height: 20,
             ),
-            Card(
-                color: AppColors.primaryWhite,
-                surfaceTintColor: AppColors.primaryWhite,
-                elevation: 10,
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10)),
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Calendar(
-                    startTime: userData.startTime,
-                    endTime: userData.endTime,
-                    isActive: true,
-                  ),
-                )),
+            Expanded(
+              child: Card(
+                  color: AppColors.primaryWhite,
+                  surfaceTintColor: AppColors.primaryWhite,
+                  elevation: 10,
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10)),
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Calendar(
+                      startTime: userData.startTime,
+                      endTime: userData.endTime,
+                      isActive: true,
+                    ),
+                  )),
+            ),
             const SizedBox(
               height: 20,
             ),
@@ -122,6 +124,9 @@ class HomePage extends StatelessWidget {
                 Text(' дни доступа к парковке')
 
               ],
+            ),
+            const SizedBox(
+              height: 40,
             ),
             // const SizedBox(
             //   height: 20,

@@ -57,7 +57,7 @@ class _AdminAddUserPageState extends State<AdminAddUserPage> {
       await userRemoteData.addUser(user);
       if (!mounted) return;
       ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text('Пользователь был добавлен!')));
+          const SnackBar(content: Text('Сотрудник был добавлен!')));
       _nameController.clear();
       _groupController.clear();
       _startDateController.clear();
