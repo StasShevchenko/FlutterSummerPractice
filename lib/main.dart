@@ -9,13 +9,7 @@ import 'package:provider/provider.dart';
 void main() {
   initializeDateFormatting('ru').then((_) => runApp( const MyApp()
   ));
-  // initializeDateFormatting('ru').then((_) => runApp(MultiProvider(
-  //       providers: [
-  //         ChangeNotifierProvider<AdminHomePageProvider>(
-  //             create: (context) => AdminHomePageProvider())
-  //       ],
-  //       child: const MyApp(),
-  //     )));
+ 
 }
 
 class MyApp extends StatelessWidget {

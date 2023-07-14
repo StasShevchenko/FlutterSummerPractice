@@ -3,11 +3,11 @@ import 'dart:io';
 
 import 'package:dio/dio.dart';
 import 'package:flutter_summer_practice/data/dto/add_user_dto.dart';
+import 'package:flutter_summer_practice/data/dto/user_credentials.dart';
 
 import '../dto/user_dto.dart';
 
-class UserRemoteData{
-
+class UserRemoteData {
   final Dio dio = Dio(BaseOptions(
     connectTimeout: Duration(seconds: 5),
     receiveTimeout: const Duration(seconds: 3),
@@ -19,13 +19,13 @@ class UserRemoteData{
     List<dynamic> data = response.data as List;
     List<UserDto> usersList = [];
 
-    for(var user in data) {
+    for (var user in data) {
       usersList.add(UserDto.fromJson(user));
     }
     return usersList;
   }
-  
-  Future<void> deleteUser(int userId) async{
+
+  Future<void> deleteUser(int userId) async {
     await dio.delete('http://62.113.110.235:4000/user/$userId');
   }
 
@@ -33,4 +33,15 @@ class UserRemoteData{
     await dio.post('http://62.113.110.235:4000/user', data: user.toJson());
   }
 
+  Future<UserDto?> auth(UserCredentials userCredentials) async {
+    try{
+      Response response = await dio.post('http://62.113.110.235:4000/auth/create', data: userCredentials.toJson());
+      UserDto? userData = UserDto.fromJson(response.data);
+      return userData;
+
+    } on DioException catch(e){
+      print(e.message);
+      return null;
+    }
+  }
 }

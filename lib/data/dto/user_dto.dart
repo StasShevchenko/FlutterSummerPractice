@@ -6,6 +6,7 @@ class UserDto {
   final int position;
   final bool isActive;
   final int group;
+  final String uniqueKey;
 
   const UserDto(
       {required this.id,
@@ -14,14 +15,16 @@ class UserDto {
       required this.endTime,
       required this.position,
       required this.isActive,
-      required this.group});
+      required this.group,
+      required this.uniqueKey});
 
   factory UserDto.fromJson(Map<String, dynamic> json) => UserDto(
-      id: json['id'] ,
+      id: json['id'],
       name: json['name'],
       startTime: json['start_time'] ?? '7/11/2023',
       endTime: json['end_time'] ?? '7/11/2023',
       position: json['position'] ?? 0,
       isActive: json['active'],
-      group: json['groupId'] ?? 0);
+      group: json['groupId'] ?? 0,
+      uniqueKey: json['unique_key']);
 }
