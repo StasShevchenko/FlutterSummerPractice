@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_summer_practice/data/dto/user_credentials.dart';
+import 'package:flutter_summer_practice/data/remote_data_source/user_remote_data.dart';
 import 'package:flutter_summer_practice/presentation/admin_home_page/admin_home_page.dart';
 import 'package:flutter_svg/svg.dart';
 
+import '../../data/dto/user_dto.dart';
 import '../home_page/home_page.dart';
 import '../theme/app_colors.dart';
 
@@ -13,6 +16,8 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  UserRemoteData userRemoteData = UserRemoteData();
+
   String login = '';
   String password = '';
 
@@ -33,7 +38,7 @@ class _LoginPageState extends State<LoginPage> {
     });
   }
 
-  void _login() {
+  void _login() async {
     setState(() {
       if (login.isEmpty) {
         loginErrorText = 'Логин не может быть пустым!';
@@ -41,23 +46,47 @@ class _LoginPageState extends State<LoginPage> {
       if (password.isEmpty) {
         passwordErrorText = 'Пароль не должен быть пустым!';
       }
-      if (loginErrorText != null || passwordErrorText != null) {
-        return;
+    });
+    if (loginErrorText != null || passwordErrorText != null) {
+      return;
+    } else if (login == 'Admin' && password == 'Admin') {
+      Navigator.of(context)
+          .push(MaterialPageRoute(builder: (context) => const AdminHomePage()));
+    } else {
+      UserCredentials userCredentials =
+          UserCredentials(name: login, uniqueKey: password);
+      UserDto? userData = await userRemoteData.auth(userCredentials);
+      if (userData != null) {
+        Navigator.of(context).push(MaterialPageRoute(
+            builder: (context) =>  HomePage(
+                  userData: userData,
+                )));
       } else {
-        if (login == 'Михаил' && password == 'Михаил') {
-          Navigator.of(context).push(MaterialPageRoute(
-              builder: (context) => const HomePage(
-                    title: 'Привет, Мишаня!',
-                  )));
-        } else if (login == 'Admin' && password == 'Admin') {
-          Navigator.of(context).push(
-              MaterialPageRoute(builder: (context) => const AdminHomePage()));
-        } else {
+        setState(() {
           loginErrorText = 'Неверный логин!';
           passwordErrorText = 'Неверный пароль!';
-        }
+        });
       }
-    });
+    }
+
+    // setState(() {
+    //   if (loginErrorText != null || passwordErrorText != null) {
+    //     return;
+    //   } else {
+    //     if (login == 'Михаил' && password == 'Михаил') {
+    //       Navigator.of(context).push(MaterialPageRoute(
+    //           builder: (context) => const HomePage(
+    //                 title: 'Привет, Мишаня!',
+    //               )));
+    //     } else if (login == 'Admin' && password == 'Admin') {
+    //       Navigator.of(context).push(
+    //           MaterialPageRoute(builder: (context) => const AdminHomePage()));
+    //     } else {
+    //       loginErrorText = 'Неверный логин!';
+    //       passwordErrorText = 'Неверный пароль!';
+    //     }
+    //   }
+    // });
   }
 
   @override

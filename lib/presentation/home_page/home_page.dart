@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
+import '../../data/dto/user_dto.dart';
 import '../theme/app_colors.dart';
 import 'components/calendar/calendar.dart';
 
 class HomePage extends StatelessWidget {
-  final String title;
+  final UserDto userData;
 
-  const HomePage({super.key, required this.title});
+  const HomePage({super.key, required this.userData});
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +22,7 @@ class HomePage extends StatelessWidget {
       backgroundColor: AppColors.background,
       appBar: AppBar(
         leading: Center(child: companyIcon),
-        title: Text(title),
+        title: Text('Привет, ${userData.name}'),
         actions: [
           Padding(
             padding: const EdgeInsets.all(8.0),
@@ -89,27 +90,48 @@ class HomePage extends StatelessWidget {
             const SizedBox(
               height: 20,
             ),
-            Expanded(
-                child: Card(
-                    color: AppColors.primaryWhite,
-                    surfaceTintColor: AppColors.primaryWhite,
-                    elevation: 10,
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10)),
-                    child: const Calendar(
-                      startTime: '7/11/2023',
-                      endTime: '7/13/2023',
-                      isActive: true,
-                    ))),
+            Card(
+                color: AppColors.primaryWhite,
+                surfaceTintColor: AppColors.primaryWhite,
+                elevation: 10,
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10)),
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Calendar(
+                    startTime: userData.startTime,
+                    endTime: userData.endTime,
+                    isActive: true,
+                  ),
+                )),
             const SizedBox(
               height: 20,
             ),
-            ElevatedButton(
-              onPressed: () {},
-              style: ElevatedButton.styleFrom(
-                  minimumSize: const Size.fromHeight(50)),
-              child: const Text('Личный кабинет'),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Container(
+                  height: 25,
+                  width: 25,
+                  decoration: BoxDecoration(
+                      color: AppColors.primaryAccentRed,
+                      borderRadius: BorderRadius.circular(10)
+                  ),
+                ),
+                Text(' дни доступа к парковке')
+
+              ],
             ),
+            // const SizedBox(
+            //   height: 20,
+            // ),
+            // ElevatedButton(
+            //   onPressed: () {},
+            //   style: ElevatedButton.styleFrom(
+            //       minimumSize: const Size.fromHeight(50)),
+            //   child: const Text('Личный кабинет'),
+            // ),
           ],
         ),
       ),
