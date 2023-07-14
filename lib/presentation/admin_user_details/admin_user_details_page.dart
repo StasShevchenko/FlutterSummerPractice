@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_summer_practice/data/dto/user_dto.dart';
 
+import '../../utils/date_formatter.dart';
 import '../theme/app_colors.dart';
 
 class UserDetailsPage extends StatelessWidget {
@@ -31,9 +32,9 @@ class UserDetailsPage extends StatelessWidget {
             children: [
               Text('Имя сотрудника: ${userData.name}', style: Theme.of(context).textTheme.bodyLarge,),
               const SizedBox(height: 20,),
-              Text('Начало периода парковки: ${userData.startTime}', style: Theme.of(context).textTheme.bodyLarge),
+              Text('Начало периода парковки: ${DateFormatter.toClientFormat(userData.startTime)}', style: Theme.of(context).textTheme.bodyLarge),
               const SizedBox(height: 20,),
-              Text('Конец периода парковки: ${userData.endTime}', style: Theme.of(context).textTheme.bodyLarge),
+              Text('Конец периода парковки: ${DateFormatter.toClientFormat(userData.endTime)}', style: Theme.of(context).textTheme.bodyLarge),
               const SizedBox(height: 20,),
               const Text('Ключ для входа:'),
               const SizedBox(height: 10,),
