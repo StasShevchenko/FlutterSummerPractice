@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_summer_practice/presentation/admin_add_user_page/admin_add_user_page.dart';
 import 'package:flutter_summer_practice/presentation/admin_home_page/admin_home_page_provider.dart';
 import 'package:flutter_summer_practice/presentation/admin_home_page/components/user_item.dart';
+import 'package:flutter_summer_practice/presentation/admin_user_details/admin_user_details_page.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
 
@@ -94,7 +95,15 @@ class AdminHomePage extends StatelessWidget {
                                       const EdgeInsets.symmetric(vertical: 8.0),
                                   child: UserItem(
                                     userInfo: state.users[index],
-                                    onTap: () {},
+                                    onTap: () {
+                                      Navigator.of(context).push(
+                                          MaterialPageRoute(
+                                              builder: (context) =>
+                                                  UserDetailsPage(
+                                                    userData:
+                                                        state.users[index],
+                                                  )));
+                                    },
                                     onDelete: () {
                                       provider
                                           .deleteUser(state.users[index].id);

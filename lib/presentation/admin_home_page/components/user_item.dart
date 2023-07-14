@@ -46,56 +46,59 @@ class UserItem extends StatelessWidget {
         continueButton
       ],
     );
-    return Card(
-      surfaceTintColor: AppColors.primaryWhite,
-      color: AppColors.primaryWhite,
-      child: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Column(
-          children: [
-            Text(
-              userInfo.name,
-              style: Theme.of(context).textTheme.bodyLarge,
-            ),
-            const SizedBox(
-              height: 10,
-            ),
-            Text('Отделение сотрудника: ${userInfo.group}'),
-            const SizedBox(
-              height: 10,
-            ),
-            if (userInfo.isActive)
+    return GestureDetector(
+      onTap: (){onTap();},
+      child: Card(
+        surfaceTintColor: AppColors.primaryWhite,
+        color: AppColors.primaryWhite,
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Column(
+            children: [
               Text(
-                'Статус сотрудника: парковка доступна',
-                style: TextStyle(color: AppColors.primaryAccentRed),
-              )
-            else
-              Text(
-                'Статус пользователя: парковка недоступна',
-                style: TextStyle(color: AppColors.primaryBlue),
+                userInfo.name,
+                style: Theme.of(context).textTheme.bodyLarge,
               ),
-            const SizedBox(
-              height: 10,
-            ),
-            Text(
-              'Следующий срок использования парковки: $startDateString - $endDateString',
-              textAlign: TextAlign.center,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                IconButton(
-                    onPressed: () {
-                          showDialog(
-                              context: context,
-                              builder: (BuildContext context) {
-                                return alert;
-                              }, );
-                        },
-                    icon: const Icon(Icons.delete))
-              ],
-            )
-          ],
+              const SizedBox(
+                height: 10,
+              ),
+              Text('Отделение сотрудника: ${userInfo.group}'),
+              const SizedBox(
+                height: 10,
+              ),
+              if (userInfo.isActive)
+                Text(
+                  'Статус сотрудника: парковка доступна',
+                  style: TextStyle(color: AppColors.primaryAccentRed),
+                )
+              else
+                Text(
+                  'Статус пользователя: парковка недоступна',
+                  style: TextStyle(color: AppColors.primaryBlue),
+                ),
+              const SizedBox(
+                height: 10,
+              ),
+              Text(
+                'Следующий срок использования парковки: $startDateString - $endDateString',
+                textAlign: TextAlign.center,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  IconButton(
+                      onPressed: () {
+                            showDialog(
+                                context: context,
+                                builder: (BuildContext context) {
+                                  return alert;
+                                }, );
+                          },
+                      icon: const Icon(Icons.delete))
+                ],
+              )
+            ],
+          ),
         ),
       ),
     );
