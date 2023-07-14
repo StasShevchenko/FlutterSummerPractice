@@ -18,6 +18,9 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   UserRemoteData userRemoteData = UserRemoteData();
 
+  final TextEditingController _loginController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+
   String login = '';
   String password = '';
 
@@ -68,25 +71,6 @@ class _LoginPageState extends State<LoginPage> {
         });
       }
     }
-
-    // setState(() {
-    //   if (loginErrorText != null || passwordErrorText != null) {
-    //     return;
-    //   } else {
-    //     if (login == 'Михаил' && password == 'Михаил') {
-    //       Navigator.of(context).push(MaterialPageRoute(
-    //           builder: (context) => const HomePage(
-    //                 title: 'Привет, Мишаня!',
-    //               )));
-    //     } else if (login == 'Admin' && password == 'Admin') {
-    //       Navigator.of(context).push(
-    //           MaterialPageRoute(builder: (context) => const AdminHomePage()));
-    //     } else {
-    //       loginErrorText = 'Неверный логин!';
-    //       passwordErrorText = 'Неверный пароль!';
-    //     }
-    //   }
-    // });
   }
 
   @override
@@ -124,22 +108,33 @@ class _LoginPageState extends State<LoginPage> {
               height: 20,
             ),
             TextField(
+              controller: _loginController,
               onTapOutside: (_) => FocusScope.of(context).unfocus(),
               textInputAction: TextInputAction.next,
               textCapitalization: TextCapitalization.sentences,
               onChanged: (value) => _enterLogin(value),
               decoration: InputDecoration(
-                  labelText: 'Введите логин', errorText: loginErrorText),
+                  labelText: 'Введите логин', errorText: loginErrorText,
+                suffixIcon: IconButton(
+                  onPressed: _loginController.clear,
+                  icon: Icon(Icons.clear_rounded, color: AppColors.primaryBlue,),
+                ),),
             ),
             const SizedBox(
               height: 20,
             ),
             TextField(
+              controller: _passwordController,
               onTapOutside: (_) => FocusScope.of(context).unfocus(),
               onChanged: (value) => _enterPassword(value),
               obscureText: true,
               decoration: InputDecoration(
-                  labelText: 'Введите пароль', errorText: passwordErrorText),
+                  labelText: 'Введите пароль', errorText: passwordErrorText,
+                suffixIcon: IconButton(
+                  onPressed: _passwordController.clear,
+                  icon: Icon(Icons.clear_rounded, color: AppColors.primaryBlue,),
+                ),),
+
             ),
             const SizedBox(
               height: 20,
