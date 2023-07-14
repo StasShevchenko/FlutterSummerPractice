@@ -19,8 +19,9 @@ class Calendar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var dateFormat = DateFormat('MM/dd/yyyy');
-    DateTime startDate = dateFormat.parse(startTime).toUtc();
-    DateTime endDate = dateFormat.parse(endTime).toUtc();
+    DateTime startDate = dateFormat.parse(startTime);
+    DateTime endDate = dateFormat.parse(endTime);
+
     return TableCalendar(
       daysOfWeekHeight: 32,
       locale: 'ru',
@@ -34,16 +35,27 @@ class Calendar extends StatelessWidget {
       firstDay: DateTime.utc(2010, 10, 16),
       lastDay: DateTime.utc(2030, 3, 14),
       calendarBuilders: CalendarBuilders(todayBuilder: (context, day, _) {
-        if (day.compareTo(startDate) >= 0 &&
-            day.compareTo(endDate.add(const Duration(days: 1))) <= 0) {
+        if (day.isGreaterOrEquals(startDate) &&
+            day.isLowerOrEquals(endDate)) {
           return ActiveCalendarDay(dayNumber: day.day.toString());
         }
       }, defaultBuilder: (context, day, focusedDay) {
-        if (day.compareTo(startDate) >= 0 &&
-            day.compareTo(endDate.add(const Duration(days: 1))) <= 0) {
+        if (day.isGreaterOrEquals(startDate) &&
+            day.isLowerOrEquals(endDate)) {
           return ActiveCalendarDay(dayNumber: day.day.toString());
         }
       }),
     );
+  }
+}
+
+extension DateOnly on DateTime {
+  bool isGreaterOrEquals(DateTime other) {
+    return year >= other.year && month >= other.month
+        && day >= other.day;
+  }
+  bool isLowerOrEquals(DateTime other) {
+    return year <= other.year && month <= other.month
+        && day <= other.day;
   }
 }

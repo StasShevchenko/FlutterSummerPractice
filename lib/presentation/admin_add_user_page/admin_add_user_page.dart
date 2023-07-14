@@ -3,6 +3,7 @@ import 'package:flutter_summer_practice/data/dto/add_user_dto.dart';
 import 'package:flutter_summer_practice/data/dto/user_dto.dart';
 import 'package:flutter_summer_practice/data/remote_data_source/user_remote_data.dart';
 
+import '../../utils/date_formatter.dart';
 import '../theme/app_colors.dart';
 
 class AdminAddUserPage extends StatefulWidget {
@@ -53,7 +54,10 @@ class _AdminAddUserPageState extends State<AdminAddUserPage> {
       return;
     } else {
       AddUserDto user = AddUserDto(
-          name: name, group: group, startTime: startDate, endTime: endDate);
+          name: name,
+          group: group,
+          startTime: DateFormatter.toServerFormat(startDate),
+          endTime: DateFormatter.toServerFormat(endDate));
       await userRemoteData.addUser(user);
       if (!mounted) return;
       ScaffoldMessenger.of(context).showSnackBar(

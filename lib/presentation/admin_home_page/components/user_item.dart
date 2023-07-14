@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_summer_practice/data/dto/user_dto.dart';
 import 'package:flutter_summer_practice/presentation/theme/app_colors.dart';
+import 'package:flutter_summer_practice/utils/date_formatter.dart';
 import 'package:intl/intl.dart';
 
 class UserItem extends StatelessWidget {
@@ -16,11 +17,8 @@ class UserItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var dateFormat = DateFormat('MM/dd/yyyy');
-    DateTime startDate = dateFormat.parse(userInfo.startTime).toUtc();
-    DateTime endDate = dateFormat.parse(userInfo.endTime).toUtc();
-    var startDateString = DateFormat('dd.MM.yyyy').format(startDate);
-    var endDateString = DateFormat('dd.MM.yyyy').format(endDate);
+    var startDateString = DateFormatter.toClientFormat(userInfo.startTime);
+    var endDateString = DateFormatter.toClientFormat(userInfo.endTime);
 
     Widget cancelButton = TextButton(
       child: Text("Отмена", style: Theme.of(context).textTheme.bodyMedium,),
